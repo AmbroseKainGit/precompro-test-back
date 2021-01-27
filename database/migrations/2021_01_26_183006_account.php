@@ -6,28 +6,30 @@ use Illuminate\Support\Facades\Schema;
 
 class Account extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-      Schema::create('account', function (Blueprint $table) {
-        $table->id('id_account');
-        $table->string('name');
-        $table->string('email');
-        $table->string('phone_number');
+  /**
+   * Run the migrations.
+   *
+   * @return void
+   */
+  public function up()
+  {
+    Schema::create('account', function (Blueprint $table) {
+      $table->increments('id');
+      $table->string('name');
+      $table->string('email');
+      $table->string('phone_number');
+      $table->timestamps();
+      $table->softDeletes();
     });
-    }
+  }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-      Schema::drop('account');
-    }
+  /**
+   * Reverse the migrations.
+   *
+   * @return void
+   */
+  public function down()
+  {
+    Schema::drop('account');
+  }
 }

@@ -14,13 +14,15 @@ class Order extends Migration
     public function up()
     {
       Schema::create('order', function (Blueprint $table) {
-        $table->id('id_order');
+        $table->increments('id');
         $table->unsignedBigInteger('id_account');
-        $table->foreign('id_account')->references('id_account')->on('account');
+        $table->foreign('id_account')->references('id')->on('account');
         $table->string('product');
         $table->double('value');
         $table->double('total');
         $table->integer('quantity');
+        $table->timestamps();
+        $table->softDeletes();
     });
     }
 
