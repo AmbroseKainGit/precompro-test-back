@@ -1,6 +1,7 @@
 ## Install-steps
-composer install
-cp .env.example .env
-php artisan migrate
-php artisan key:generate
-php artisan websockets:serve
+1. Clone this repository
+2. `composer install`
+3. `cp .env.example .env`
+4. `php artisan migrate`
+5. `php artisan key:generate`
+6. `php artisan websockets:serve`
