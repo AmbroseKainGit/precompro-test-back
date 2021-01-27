@@ -36,9 +36,9 @@ class OrderController extends Controller
       $account = Account::where('id', $order->id_account)->first();
       $data = ['account' => $account, 'order' => $order];
       event(new OrderCreated($data));
-      return response()->json(['data' => $order], 200);
+      return response()->json(['data' => $order, 'message' => "Request Sucessfull"], 200);
     } catch (\Throwable $th) {
-      return response()->json(['message' => $th], 400);
+      return response()->json(['data' => $th, 'message' => "Request Gone Wrong"], 400);
     }
   }
 
@@ -71,9 +71,9 @@ class OrderController extends Controller
       $account = Account::where('id', $order->id_account)->first();
       $data = ['account' => $account, 'order' => $order];
       event(new OrderUpdated($data));
-      return response()->json($data, 200);
+      return response()->json(['data' => $data, 'message' => 'Request Sucessfull'], 200);
     } catch (\Throwable $th) {
-      return response()->json(['message' => $th], 400);
+      return response()->json(['data' => $th, 'message' => "Request Gone Wrong"], 400);
     }
   }
 
@@ -90,7 +90,7 @@ class OrderController extends Controller
       $order->delete();
       return response()->json($order, 200);
     } catch (\Throwable $th) {
-      return response()->json(['message' => $th], 400);
+      return response()->json(['data' => $th, 'message' => "Request Gone Wrong"], 400);
     }
   }
 }

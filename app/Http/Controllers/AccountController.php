@@ -29,9 +29,9 @@ class AccountController extends Controller
       $account->email = $request->email;
       $account->phone_number = $request->phone;
       $account->save();
-      return response()->json(['data' => $account], 200);
+      return response()->json(['data' => $account, 'message' => 'Request Sucessfull'], 200);
     } catch (\Throwable $th) {
-      return response()->json(['message' => $th], 400);
+      return response()->json(['data' => $th, 'message' => "Request Gone Wrong"], 400);
     }
   }
 
@@ -41,9 +41,9 @@ class AccountController extends Controller
     try {
 
       $account = Account::all();
-      return response()->json(['data' => $account], 200);
+      return response()->json(['data' => $account, 'message' => 'Request Sucessfull'], 200);
     } catch (\Throwable $th) {
-      return response()->json(['message' => $th], 400);
+      return response()->json(['data' => $th, 'message' => "Request Gone Wrong"], 400);
     }
   }
 
@@ -70,9 +70,9 @@ class AccountController extends Controller
         $account->phone_number = $request->phone;
       }
       $account->save();
-      return response()->json($account, 200);
+      return response()->json(['data' => $account, 'message' => 'Request Sucessfull'], 200);
     } catch (\Throwable $th) {
-      return response()->json(['message' => $th], 400);
+      return response()->json(['data' => $th, 'message' => "Request Gone Wrong"], 400);
     }
   }
 
@@ -87,9 +87,9 @@ class AccountController extends Controller
     try {
       $account = Account::find($request->id);
       $account->delete();
-      return response()->json($account, 200);
+      return response()->json(['data' => $account, 'message' => 'Request Sucessfull'], 200);
     } catch (\Throwable $th) {
-      return response()->json(['message' => $th], 400);
+      return response()->json(['data' => $th, 'message' => "Request Gone Wrong"], 400);
     }
   }
 }
